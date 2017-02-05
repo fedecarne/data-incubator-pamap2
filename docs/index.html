@@ -5,89 +5,119 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap-theme.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 550px}
+       
+    .container {
+    margin-right: 50px;
+    margin-left: 150px;
+    }
+
+    header {    
+    padding: 30px;
+    margin-left: 130px;
+    margin-right: 520px;
+    }
+
+    body {
+    font: 20px "Montserrat", sans-serif;
+    line-height: 1.8;
+    }
+
+    footer {
+    background-color: #2d2d30;
+    font: 15px "Montserrat", sans-serif;
+    color: #f5f5f5;
+    padding: 50px;
+    }
     
-    /* Set gray background color and 100% height */
-    .sidenav {
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-        
-    /* On small screens, set height to 'auto' for the grid */
-    @media screen and (max-width: 767px) {
-      .row.content {height: auto;} 
-    }
   </style>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse visible-xs">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Logo</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Dashboard</a></li>
-        <li><a href="#">Age</a></li>
-        <li><a href="#">Gender</a></li>
-        <li><a href="#">Geo</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
 
-<div class="container-fluid">
+<header> 
+    <div class="well well-lg">
+    <h1>The Data Incubator Challenge</h1>
+    </div>
+</header>
 
-  <div class="row content">
+<div class="container">
   
-    <div class="col-sm-1 sidenav hidden-xs">
+  <div class="row content">
+    
+    <div class="col-sm-2">
+        
+        <div class="list-group">
 
-      <h2> </h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#section2">The Problem</a></li>
-        <li><a href="#section3">The Data</a></li>
-        <li><a href="#section3">The Analysis</a></li>
-        <li><a href="#section3">The Future</a></li>
-      </ul><br>
+            <a href="#Problem"class="list-group-item">HAR</a>
+            <a href="#Data"class="list-group-item">Data</a>
+            <a href="#Analysis"class="list-group-item">Analysis</a>
+            <a href="#Future"class="list-group-item">Future work</a>
+                                
+        </div>
     </div>
-    
-    <br>
-    
-    <div class="col-sm-9">
+       
+    <div class="col-sm-10">
       
-      <div class="well">
-        <h4 id="Problem">The Problem</h4>
-        <p>Some text..</p>
+      <div class="well well-lg">
+      
+        <h2 id="Problem">Human Activity Recognition</h2>
+        <p>Human activity recognition (HAR) is a fast-growing field in human-computer interaction. It consists in automaticaly recognizing common human activities in real-life settings. Here we focus on sensor-based HAR, in which data from multiple body-worn inertial sensors such as accelerometers and gyroscopes is used to detect and classify human activities.
+         </p>
       </div>
       
-      <div class="well">
-        <h4 id="Data">The Data</h4>
-        <p>Some text..</p>
+      <div class="well well-lg">
+        <h2 id="Data">PAMAP2 Dataset</h2>
+        <p> The  <a href="https://archive.ics.uci.edu/ml/datasets/PAMAP2+Physical+Activity+Monitoring">PAMAP2 dataset</a> used for this project comes from the Department of Augmented Vision of the German Research Center for Artificial Intelligence. It consists of over 10 hours of recordings of 18 different physical activities (such as walking, cycling, playing soccer, etc.), performed by 9 subjects wearing 3 inertial measurement units and a heart rate monitor.<p>
+        <p> The sensors used for this dataset were 3 <a href="http://media.wix.com/ugd/f221b8_f3ad435e76ac40448e7723c0ecab9cb8.pdf">Colibri wireless inertial measurement units</a> (IMU), positioned in the wrist, chest and ankle. Each IMU comprises one temperature sensor, one 3D-accelerometer, one  3D-gyroscope sensor and one 3D-magnetometer.<p>
+        <p> The following two publications further describe the dataset:<p>
+        <ul class="nav nav-pills nav-stacked">
+          <li>[1] A. Reiss and D. Stricker. Introducing a New Benchmarked Dataset for Activity Monitoring. The 16th IEEE International Symposium on Wearable Computers (ISWC), 2012.</li>
+          <li>[2] A. Reiss and D. Stricker. Creating and Benchmarking a New Dataset for Physical Activity Monitoring. The 5th Workshop on Affect and Behaviour Related Assistance (ABRA), 2012.</li>
+        </ul>
+        
       </div>
       
-      <div class="well">
-        <h4 id="Analysis">The Analysis</h4>
-        <p>Some text..</p>
-         <img src="img/sine.png" class="img-rounded" alt="" width="304" height="236">        
+      <div class="well well-lg">
+        <h2 id="Analysis">A Preliminary Analysis</h2>
+        <p> For a preliminary analysis, we'll focus on only two activities: running and cycling. Let's first inspect the measured signals in time. The plot below shows the traces recorded by each sensor (accelerometer, gyroscope and magnetometer) during running and cycling. Each plot shows three traces, corresponding to the three spatial axes. </p>
+        </p><img src="img/signals-1.png" class="img-rounded" alt="" width="800" height="500" align="middle"></p>
+        <p>As we can see, the recorded traces show specific patterns that are quite differmt according with the activity. We''' exploit these patterns to distinguish the activity. <p>
+        <p>Let's now see the structure of the data in the 'state-space'. The plot below shows all the datapoints for the gyroscope sensor. <p>
+        </p><img src="img/project-1.png" class="img-rounded" alt="" width="800" height="250" align="middle"></p>
+        We see how the data for the two activities form clusters in space. They are clearly not linearly separable. 
+        
+        </p><img src="img/pca-1.png" class="img-rounded" alt="" width="400" height="300" align="middle"></p>
+        <h5>Support Vector Machine</h5> 
+        </p> What sensor is the most useful to distinguish runing vs cycling? To answe this question, we can train SVM's to classify each sensor data separately and compare their performance. In the figure below, we plot the classification error for each sensor (accelerometer, gyroscope and magnetometer) in each body position (hand, chest and ankle).</p>
+        </p><img src="img/error-1.png" class="img-rounded" alt="" width="800" height="300" align="middle"></p>
+        <p>The SVM's were trained... Cros-validation was perform 10fold and....</p>
+        <p>This analysis let us conclude that the optimal choice to distinguish running versus cycling is to use an accelerometer in the hand. This is a lucky result, given that there's where sport watches are worn. So, we can use this method to automatically detect whether a user is running or cycling and correcly label the activity when we save it in our activity tracker database. <p>
       </div>
       
-      <div class="well">
-        <h4 id="Future2">The Future</h4>
-        <p>Some text..</p>
+      <div class="well well-lg">
+        <h2 id="Future">Future work</h2>
+        <p> Human activity recognition is an extremely promising field. With the fast development of new wearable sensors, the amount of data is increasing exponentially. This has to come together with algorithms to effeciently decode information from this data. In this project, I intend to find out what are the best algorithms and the best sensors to classify human activity. This include: distinguising multiple activities, ... Moreover, the solution has to be robust between different individuals so that ...
+            </p>
       </div>
     </div>
   </div>
 </div>
+
+<footer class="container-fluid text-center">
+    <h4>Federico J Carnevale</h4>
+    <br>
+    <ul class="list-inline">
+<li><a href="mailto:fedecarne@gmail.com" class="icoEnvelope" title="Email"><i class="fa fa-envelope fa-3x"></i></a></li>
+<li><a href="http://www.github.com/fedecarne" class="icoGithub" title="Facebook"><i class="fa fa-github fa-3x"></i></a></li>
+<li><a href="https://www.linkedin.com/in/fedecarnevale" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin fa-3x"></i></a></li>
+</ul>
+</footer>
 
 </body>
 </html>
