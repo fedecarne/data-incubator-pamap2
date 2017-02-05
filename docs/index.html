@@ -5,8 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap-theme.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -65,28 +64,38 @@
        
     <div class="col-sm-10">
       
-      <div class="well well-lg">
-      
+    <div class="page-header">
         <h2 id="Problem">Human Activity Recognition</h2>
-        <p> Human activity recognition (HAR) is a fast-growing technology. Understanding and automatically recognizing common human activities in real-life settings is likely to become a key feature in future intelligent systems. 
+    </div>
+
+    <div class="well well-lg">
+      
+
+        <p> Human activity recognition (HAR) is an exciting and fast-growing technology. Understanding and automatically recognizing common human activities in real-life settings is likely to become a key feature in future intelligent systems. 
         
-        <p>Sensor-based HAR uses data from multiple body-worn inertial sensors such as accelerometers, gyroscopes and magnetometers. This requires algorithms that can transform this high-dimensional data into activity labels. For the TDI project, I propose to study machine learning techniques to solve sensor-based HAR. I will focus on:
+        <p>Sensor-based HAR uses data from multiple body-worn inertial sensors, such as accelerometers, gyroscopes and magnetometers, to detect and classify human activities. This requires algorithms that can efficiently transform large high-dimensional data into activity labels. For the TDI project, I propose to study machine learning techniques to solve sensor-based HAR. I will focus on:
         <ul>
           <li> <b> What's the best ML approach to recognize human activities from sensor data?</b></li>
-          <li> <b> What are the best sensors for this purpose?</b></li>
+          <li> <b> What are the best sensors (type and body position) for this purpose?</b></li>
         </ul>
-<p>         The different approaches will be judges in terms of (1) <b>accuracy</b>: how many classification errors is produces (2) <b>efficiency</b>: how much data it needs and how fast it converges and (3) <b>robustness</b>: how well it generalized to different users. </p>
+<p>         The different approaches will be judged in terms of (1) <b>accuracy</b>: how many classification errors it produces (2) <b>efficiency</b>: how much data it needs and how fast it converges and (3) <b>robustness</b>: how well it generalizes to different individuals. </p>
         <p>To movitate this proposal, here I present a preliminar analysis of one HAR datatset. I focus on distinguishing two activities from 3 different sensors in 3 different body positions. A preliminar analysis lets me conclude what's the optimal sensor for this purpose. </p>
-        <p> Finally, while I am focusing on this particular example, there are many available HAR dataset online to explore such as:
+        <p> Finally, while I am focusing on one particular example, there are many available HAR dataset online to explore, such as:
         <ul>
-          <li>  <a href="http://www5.cs.fau.de/activitynet/benchmark-datasets/daliac-daily-life-activities/">The DaLiAc dataset</a>  </li>
-          <li>  <a href="http://www5.cs.fau.de/activitynet/benchmark-datasets/daliac-daily-life-activities/">The USC-SIPI Human Activity Dataset</a></li>
+          <li>  <a href="http://www5.cs.fau.de/activitynet/benchmark-datasets/daliac-daily-life-activities/">The DaLiAc dataset (19 subjects, 13 activities)</a>  </li>
+          <li>  <a href="http://sipi.usc.edu/HAD/">The USC-SIPI Human Activity Dataset (14 subjects, 12 activities)</a></li>
         </ul>
         </p>
       </div>
       
-      <div class="well well-lg">
+      
+  <div class="page-header">
         <h2 id="Data">PAMAP2 Dataset</h2>
+    </div>
+    
+    
+      <div class="well well-lg">
+
         <p> The  <a href="https://archive.ics.uci.edu/ml/datasets/PAMAP2+Physical+Activity+Monitoring">PAMAP2 dataset</a> was collected at the Department of Augmented Vision of the German Research Center for Artificial Intelligence. It contains over 10 hours of recordings of 18 different physical activities (such as walking, cycling or running), performed by 9 subjects wearing 3 inertial measurement units.<p>
         <p> The sensors used for this dataset (<a href="http://media.wix.com/ugd/f221b8_f3ad435e76ac40448e7723c0ecab9cb8.pdf">Colibri wireless IMU)</a> were positioned in the wrist, chest and ankle. Each IMU comprised a 3D-accelerometer, a 3D-gyroscope sensor and a 3D-magnetometer.<p>
         <p> For more info about the dataset, check the following two publications:<p>
@@ -97,11 +106,15 @@
         
       </div>
       
-      <div class="well well-lg">
+        <div class="page-header">
         <h2 id="Analysis">Preliminary Analysis</h2>
-        <p> For this preliminary analysis, I'll focus on two activities: running and cycling. The goal is to find <b>what's the best sensor (type and position) to automatically detect whether a user is running or cycling?</b> This is a practical question with direct application. It is required, for example, for any fitness tracker device. </p>
+    </div>
+      
+      <div class="well well-lg">
+
+        <p> For this preliminary analysis, I'll focus on two activities: running and cycling. The goal is to find <b>what's the best sensor (type and position) to automatically detect whether a user is running or cycling?</b> This is a practical question with direct application. It is required, for example, for a fitness tracker device to correctly tag an acticity in its database. </p>
         
-        <p>Let's first inspect how the measured signals look in the time domain. The plot below shows traces recorded by each sensor (accelerometer, gyroscope and magnetometer) attached to the wrist during running and cycling. Each plot shows three traces, corresponding to the three spatial axes (x,y,z). </p>
+        <p>Let's first inspect how the measured signals look like in the time domain. The plot below shows traces recorded by each sensor (accelerometer, gyroscope and magnetometer) attached to the wrist during running and cycling. Each plot shows three traces, corresponding to the three spatial axes (x,y,z). </p>
         
         <br>
         <center><figure>
@@ -110,9 +123,7 @@
         </figure></center> 
         <br>
 
-        <p>As we can see, the recorded traces show specific temporal patterns that are quite different in each activity.</p>
-        
-        <p>Let's now see how the data looks like 'state-space'. The plot below shows, as an example, all datapoints for one of the gyroscope sensors. <p>
+        <p>As we can see, the recorded traces show specific temporal patterns that are quite different in each activity. Let's now see how the data looks like in 'state-space'. The following plot shows, as an example, all datapoints for one of the gyroscope sensors. <p>
         
         
         <br>
@@ -122,8 +133,8 @@
         </figure></center> 
         <br>
         
-        <p>We see that, while the data forms different clusters for each activity, they are clearly not linearly separable. Let's then use a nonlinear SVM with Gaussian kernel functions to find what sensor is the most useful to distinguish runing from cycling. </p> 
-        <p> Here I've trained 9 different SVM's to solve the classification problem using each sensor data separately. In the figure below, I plot the classification error for each sensor (accelerometer, gyroscope and magnetometer) in each body position (wrist, chest and ankle).</p>
+        <p>We see that while the data forms different clusters for each activity, they are clearly not linearly separable. Let's then use a nonlinear SVM with a gaussian kernel to find what sensor is the most useful to distinguish runing from cycling. </p> 
+        <p> Here I've trained 9 different SVM's to solve the classification problem using each sensor data separately. Below, I plot the classification error for each sensor (accelerometer, gyroscope and magnetometer) in each body position (wrist, chest and ankle).</p>
         
         <br>
         <center><figure>        
@@ -131,15 +142,19 @@
         <figcaption>Fig3. - Classification error for each sensor and body position.</figcaption>
         </figure></center> 
         <br>
-        
-        <p> The classification error was computed using a 10-fold approach.</p>
-        
-        <p> So we can conclude that the optimal choice to distinguish running versus cycling is to use an accelerometer in the wrist. This is a great, since that there's where sport watches are worn. So, we can use this method to automatically detect whether a user is running or cycling and correcly label the activity before saving it in our activity tracker database. <p>
+               
+        <p> As we can see, the optimal choice to distinguish running versus cycling is to use an accelerometer in the wrist. This is a great, since that's where sport watches are worn :) So, we can use this method to automatically detect whether a user is running or cycling and correcly label the activity before saving it in our activity tracker database. <p>
       </div>
       
-      <div class="well well-lg">
+        <div class="page-header">
         <h2 id="Future">Future work</h2>
-        <p> Human activity recognition is an extremely promising field. Combined with wearable computing, the amount of available data is likely to keep increasing exponentially. This grow must be matched with new algorithms that can effectively decode and extract information from this high-dimensional data. In this project, I intend to find out how ML can solve HAR.         
+    </div>
+
+              
+              
+      <div class="well well-lg">
+
+        <p> Human activity recognition is an extremely promising field. Combined with wearable computing, the amount of available data is likely to keep increasing exponentially. This grow must be matched with new algorithms that can effectively decode and extract information from this high-dimensional data. <b>In this project, I intend to find out how ML can solve HAR.</b>
         </p>
       </div>
     </div>
