@@ -67,42 +67,73 @@
       <div class="well well-lg">
       
         <h2 id="Problem">Human Activity Recognition</h2>
-        <p>Human activity recognition (HAR) is a fast-growing field in human-computer interaction. It consists in automaticaly recognizing common human activities in real-life settings. Here we focus on sensor-based HAR, in which data from multiple body-worn inertial sensors such as accelerometers and gyroscopes is used to detect and classify human activities.
-         </p>
+        <p> Human activity recognition (HAR) is a fast-growing technology. Understanding and automatically recognizing common human activities in real-life settings is likely to become a key feature in any intelligent system. </p>
+        
+        <p>In sensor-based HAR data from multiple body-worn inertial sensors (such as accelerometers and gyroscopes) is used to detect and classify human activities.</p>
+        
+        <p>For the TDI project I propose to study ....</p>
+        
+        <p>To movitate this proposal, here I present a preliminar analysis of one particular HAR datatset. 
+        
+        While I am focusing on this one particular dataset, there are many available HAR dataset online to explore. </p>
       </div>
       
       <div class="well well-lg">
         <h2 id="Data">PAMAP2 Dataset</h2>
-        <p> The  <a href="https://archive.ics.uci.edu/ml/datasets/PAMAP2+Physical+Activity+Monitoring">PAMAP2 dataset</a> used for this project comes from the Department of Augmented Vision of the German Research Center for Artificial Intelligence. It consists of over 10 hours of recordings of 18 different physical activities (such as walking, cycling, playing soccer, etc.), performed by 9 subjects wearing 3 inertial measurement units and a heart rate monitor.<p>
-        <p> The sensors used for this dataset were 3 <a href="http://media.wix.com/ugd/f221b8_f3ad435e76ac40448e7723c0ecab9cb8.pdf">Colibri wireless inertial measurement units</a> (IMU), positioned in the wrist, chest and ankle. Each IMU comprises one temperature sensor, one 3D-accelerometer, one  3D-gyroscope sensor and one 3D-magnetometer.<p>
-        <p> The following two publications further describe the dataset:<p>
+        <p> The  <a href="https://archive.ics.uci.edu/ml/datasets/PAMAP2+Physical+Activity+Monitoring">PAMAP2 dataset</a> was collected at the Department of Augmented Vision of the German Research Center for Artificial Intelligence. It contains over 10 hours of recordings of 18 different physical activities (such as walking, cycling or running), performed by 9 subjects wearing 3 inertial measurement units.<p>
+        <p> The sensors used for this dataset (<a href="http://media.wix.com/ugd/f221b8_f3ad435e76ac40448e7723c0ecab9cb8.pdf">Colibri wireless IMU)</a> were positioned in the wrist, chest and ankle. Each IMU comprised a 3D-accelerometer, a 3D-gyroscope sensor and a 3D-magnetometer.<p>
+        <p> For more info about the dataset, check the following two publications:<p>
         <ul class="nav nav-pills nav-stacked">
-          <li>[1] A. Reiss and D. Stricker. Introducing a New Benchmarked Dataset for Activity Monitoring. The 16th IEEE International Symposium on Wearable Computers (ISWC), 2012.</li>
-          <li>[2] A. Reiss and D. Stricker. Creating and Benchmarking a New Dataset for Physical Activity Monitoring. The 5th Workshop on Affect and Behaviour Related Assistance (ABRA), 2012.</li>
+          <li style="font-size:80%;"> [1] A. Reiss and D. Stricker. Introducing a New Benchmarked Dataset for Activity Monitoring. The 16th IEEE International Symposium on Wearable Computers (ISWC), 2012.</li>
+          <li style="font-size:80%;">[2] A. Reiss and D. Stricker. Creating and Benchmarking a New Dataset for Physical Activity Monitoring. The 5th Workshop on Affect and Behaviour Related Assistance (ABRA), 2012.</li>
         </ul>
         
       </div>
       
       <div class="well well-lg">
-        <h2 id="Analysis">A Preliminary Analysis</h2>
-        <p> For a preliminary analysis, we'll focus on only two activities: running and cycling. Let's first inspect the measured signals in time. The plot below shows the traces recorded by each sensor (accelerometer, gyroscope and magnetometer) during running and cycling. Each plot shows three traces, corresponding to the three spatial axes. </p>
-        </p><img src="img/signals-1.png" class="img-rounded" alt="" width="800" height="500" align="middle"></p>
-        <p>As we can see, the recorded traces show specific patterns that are quite differmt according with the activity. We''' exploit these patterns to distinguish the activity. <p>
-        <p>Let's now see the structure of the data in the 'state-space'. The plot below shows all the datapoints for the gyroscope sensor. <p>
-        </p><img src="img/project-1.png" class="img-rounded" alt="" width="800" height="250" align="middle"></p>
-        We see how the data for the two activities form clusters in space. They are clearly not linearly separable. 
+        <h2 id="Analysis">Preliminary Analysis</h2>
+        <p> For this preliminary analysis, I'll focus on two activities: running and cycling. The goal is to find <b>what's the best sensor (type and position) to automatically detect whether a user is running or cycling?</b> This is a practical question with direct application. It is required, for example, for any fitness tracker device. </p>
         
-        </p><img src="img/pca-1.png" class="img-rounded" alt="" width="400" height="300" align="middle"></p>
-        <h5>Support Vector Machine</h5> 
-        </p> What sensor is the most useful to distinguish runing vs cycling? To answe this question, we can train SVM's to classify each sensor data separately and compare their performance. In the figure below, we plot the classification error for each sensor (accelerometer, gyroscope and magnetometer) in each body position (hand, chest and ankle).</p>
-        </p><img src="img/error-1.png" class="img-rounded" alt="" width="800" height="300" align="middle"></p>
-        <p>The SVM's were trained... Cros-validation was perform 10fold and....</p>
-        <p>This analysis let us conclude that the optimal choice to distinguish running versus cycling is to use an accelerometer in the hand. This is a lucky result, given that there's where sport watches are worn. So, we can use this method to automatically detect whether a user is running or cycling and correcly label the activity when we save it in our activity tracker database. <p>
+        <p>Let's first inspect how the measured signals look in the time domain. The plot below shows traces recorded by each sensor (accelerometer, gyroscope and magnetometer) attached to the wrist during running and cycling. Each plot shows three traces, corresponding to the three spatial axes (x,y,z). </p>
+        
+        <br>
+        <center><figure>
+        <img src="img/signals-1.png" class="img-rounded" alt="" width="800" height="500">
+        <figcaption>Fig1. - Sensor traces for the wrist-attached IMU while running (top) and cycling (bottom).</figcaption>
+        </figure></center> 
+        <br>
+
+        <p>As we can see, the recorded traces show specific temporal patterns that are quite different in each activity.</p>
+        
+        <p>Let's now see how the data looks like 'state-space'. The plot below shows, as an example, all datapoints for one of the gyroscope sensors. <p>
+        
+        
+        <br>
+        <center><figure>
+        <img src="img/project-1.png" class="img-rounded" alt="" width="800" height="250">
+        <figcaption>Fig2. - Sensor projections for the wrist-attached gyroscope in both activities.</figcaption>
+        </figure></center> 
+        <br>
+        
+        <p>We see that, while the data forms different clusters for each activity, they are clearly not linearly separable. </p>
+        <p> Let's then use a SVM to find what sensor is the most useful to distinguish runing from cycling. </p> 
+        <p> I've trained different SVM's to solve the classification problem using each sensor data separately. In the figure below, I plot the classification error for each sensor (accelerometer, gyroscope and magnetometer) in each body position (wrist, chest and ankle).</p>
+        
+        <br>
+        <center><figure>        
+        </p><img src="img/error-1.png" class="img-rounded" alt="" width="800" height="300" align="middle">
+        <figcaption>Fig3. - Classification error for each sensor and body position.</figcaption>
+        </figure></center> 
+        <br>
+        
+        <p> The classification error was computed using a 10-fold approach.</p>
+        
+        <p> So we can conclude that the optimal choice to distinguish running versus cycling is to use an accelerometer in the wrist. This is a great, since that there's where sport watches are worn. So, we can use this method to automatically detect whether a user is running or cycling and correcly label the activity before saving it in our activity tracker database. <p>
       </div>
       
       <div class="well well-lg">
         <h2 id="Future">Future work</h2>
-        <p> Human activity recognition is an extremely promising field. With the fast development of new wearable sensors, the amount of data is increasing exponentially. This has to come together with algorithms to effeciently decode information from this data. In this project, I intend to find out what are the best algorithms and the best sensors to classify human activity. This include: distinguising multiple activities, ... Moreover, the solution has to be robust between different individuals so that ...
+        <p> Human activity recognition is an extremely promising field. With the fast development of new wearable sensors, the amount of data is increasing exponentially. This grow needs to be match with new algorithms that can effectively decode information from this data. In this project, I intend to find out what are the best algorithms and the best sensors to classify human activity. This includes: ...distinguising multiple activities, ... Moreover, the solution has to be robust between different individuals so that ...
             </p>
       </div>
     </div>
