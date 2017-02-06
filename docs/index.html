@@ -76,10 +76,12 @@
         <p>Sensor-based HAR uses data from multiple body-worn inertial sensors, such as accelerometers, gyroscopes and magnetometers, to detect and classify human activities. This requires algorithms that can efficiently transform large high-dimensional data into activity labels. For the TDI project, I propose to study machine learning techniques to solve sensor-based HAR. I will focus on:
         <ul>
           <li> <b> What's the best ML approach to recognize human activities from sensor data?</b></li>
-          <li> <b> What are the best sensors (type and body position) for this purpose?</b></li>
+          <li> <b> What are the best sensors (type and body location) for this purpose?</b></li>
         </ul>
-<p>         The different approaches will be judged in terms of (1) <b>accuracy</b>: how many classification errors it produces (2) <b>efficiency</b>: how much data it needs and how fast it converges and (3) <b>robustness</b>: how well it generalizes to different individuals. </p>
-        <p>To movitate this proposal, here I present a preliminar analysis of one HAR datatset. I focus on distinguishing two activities from 3 different sensors in 3 different body positions. A preliminar analysis lets me conclude what's the optimal sensor for this purpose. </p>
+        <p> I am particularly interested in recognizing fitness activities based on smartphone sensor data. This would allow us to easily keep track of our fitness activity in daily life. </p>
+
+<p>         The different approaches will be judged in terms of (1) <b>accuracy</b>: how many classification errors are produced (2) <b>efficiency</b>: how much data is needed and how fast is the convergence, and (3) <b>robustness</b>: how good is the generalization to different individuals. </p>
+        <p>To motivate this proposal, I present a preliminary analysis of one HAR datatset. I focus on distinguishing two activities from three different sensors attatched to three different body parts. From this first analysis, I can conclude which is the optimal sensor and what is the best sensor location. </p>
         <p> Finally, while I am focusing on one particular example, there are many available HAR dataset online to explore, such as:
         <ul>
           <li>  <a href="http://www5.cs.fau.de/activitynet/benchmark-datasets/daliac-daily-life-activities/">The DaLiAc dataset (19 subjects, 13 activities)</a>  </li>
@@ -112,7 +114,7 @@
       
       <div class="well well-lg">
 
-        <p> For this preliminary analysis, I'll focus on two activities: running and cycling. The goal is to find <b>what's the best sensor (type and position) to automatically detect whether a user is running or cycling?</b> This is a practical question with direct application. It is required, for example, for a fitness tracker device to correctly tag an acticity in its database. </p>
+        <p> For this preliminary analysis, I'll focus on two activities: running and cycling. The goal is to find <b>what's the best sensor (type and position) to automatically detect whether a user is running or cycling?</b> This is a practical question with direct application. It is required, for example, for a fitness tracker device to correctly tag an activity in its database. </p>
         
         <p>Let's first inspect how the measured signals look like in the time domain. The plot below shows traces recorded by each sensor (accelerometer, gyroscope and magnetometer) attached to the wrist during running and cycling. Each plot shows three traces, corresponding to the three spatial axes (x,y,z). </p>
         
@@ -123,7 +125,7 @@
         </figure></center> 
         <br>
 
-        <p>As we can see, the recorded traces show specific temporal patterns that are quite different in each activity. Let's now see how the data looks like in 'state-space'. The following plot shows, as an example, all datapoints for one of the gyroscope sensors. <p>
+        <p>As we can see, the recorded traces show specific temporal patterns that are quite different for each activity. Another way of looking at the data is in the 'state-space'. The following plot shows, as an example, all data points for one of the gyroscope sensors. <p>
         
         
         <br>
@@ -133,28 +135,27 @@
         </figure></center> 
         <br>
         
-        <p>We see that while the data forms different clusters for each activity, they are clearly not linearly separable. Let's then use a nonlinear SVM with a gaussian kernel to find what sensor is the most useful to distinguish runing from cycling. </p> 
-        <p> Here I've trained 9 different SVM's to solve the classification problem using each sensor data separately. Below, I plot the classification error for each sensor (accelerometer, gyroscope and magnetometer) in each body position (wrist, chest and ankle).</p>
+        <p>We see that while the data is structured in different regions for each activity, they are clearly not linearly separable. Therefore, I decided to use a nonlinear SVM with a Gaussian kernel to find which sensor is the most useful to distinguish running from cycling. </p> 
+        <p> I've trained 9 different SVM's to solve the classification problem using each sensor data separately. Below, I plot the classification error for each sensor (accelerometer, gyroscope and magnetometer) in each body part (wrist, chest and ankle).</p>
         
         <br>
         <center><figure>        
         </p><img src="img/error-1.png" class="img-rounded" alt="" width="800" height="300" align="middle">
-        <figcaption>Fig3. - Classification error for each sensor and body position.</figcaption>
+        <figcaption>Fig3. - Classification error for each sensor and body part.</figcaption>
         </figure></center> 
         <br>
                
-        <p> As we can see, the optimal choice to distinguish running versus cycling is to use an accelerometer in the wrist. This is a great, since that's where sport watches are worn :) So, we can use this method to automatically detect whether a user is running or cycling and correcly label the activity before saving it in our activity tracker database. <p>
+        <p> As we can see, the optimal choice to distinguish running versus cycling is to use an accelerometer on the wrist. This is great news, since that's where sport watches are worn :) </p>
+        <p> That means that this method can be used to automatically detect whether a user is running or cycling and correctly label the activity when saving it to our activity tracker database. <p>
       </div>
       
         <div class="page-header">
         <h2 id="Future">Future work</h2>
-    </div>
-
-              
+    </div>              
               
       <div class="well well-lg">
 
-        <p> Human activity recognition is an extremely promising field. Combined with wearable computing, the amount of available data is likely to keep increasing exponentially. This grow must be matched with new algorithms that can effectively decode and extract information from this high-dimensional data. <b>In this project, I intend to find out how ML can solve HAR.</b>
+        <p> Human activity recognition is an extremely promising field. Combined with wearable devices, the amount of available data is likely to keep increasing exponentially. This data growth must be matched with new algorithms that can effectively decode and extract information from this high-dimensional data. <b>In this project, I intend to find out how ML can solve HAR.</b>
         </p>
       </div>
     </div>
